@@ -8,6 +8,7 @@ import (
 	"net/http/cookiejar"
 	"net/url"
 	"os"
+	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 )
@@ -97,6 +98,8 @@ func (app *App) getProjects() []Project {
 		}
 		projects = append(projects, project)
 	})
+	totalCommits := document.Find(".position-relative > h2.text-normal").Text()
+	fmt.Println("Total commits --> ", strings.TrimSpace(totalCommits))
 	return projects
 }
 
